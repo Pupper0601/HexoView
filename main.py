@@ -1,5 +1,6 @@
 import os
 
+import uvicorn
 from fastapi import FastAPI
 from handle_db import SqliteHandle
 from pydantic import BaseModel
@@ -28,4 +29,4 @@ async def insert_view(item: Item):
 
 
 if __name__ == '__main__':
-    os.system("uvicorn main:app --reload")
+    uvicorn.run("main:app", host="0.0.0.0", reload=True)
