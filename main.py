@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from handle_db import SqliteHandle
 from pydantic import BaseModel
@@ -25,3 +27,5 @@ async def insert_view(item: Item):
     return sq.insert_view({"address": address, "ip": ip, "view": view})
 
 
+if __name__ == '__main__':
+    os.system("uvicorn main:app --reload")
