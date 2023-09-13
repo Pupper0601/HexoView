@@ -28,5 +28,5 @@ async def insert_view(item: Item):
     return sq.insert_view({"address": address, "ip": ip, "view": view})
 
 
-# if __name__ == '__main__':
-#     uvicorn.run("main:app", host="0.0.0.0", reload=True)
+if __name__ == '__main__':
+    uvicorn.run("app:app", host="0.0.0.0", reload=True)
