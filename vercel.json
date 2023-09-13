@@ -1,11 +1,6 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "main.py",
-            "use": "@now/python"
-        }
-    ],
+    "public": true,
     "routes": [
         {
             "src": "(.*)",
