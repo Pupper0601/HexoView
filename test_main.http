@@ -7,6 +7,8 @@ Accept: application/json
 
 POST http://127.0.0.1:8000/insert/
 Content-Type: application/json
+#GET http://127.0.0.1:8000/insert/?address=https://pupper.cn/posts/b3426ccb.html&ip=127.0.0.12&view=view4
+#Accept: application/json
 
 {"address":"https://pupper.cn/posts/b3426ccb.html","ip":"127.0.0.12","view":"view4"}
 ###

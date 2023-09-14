@@ -54,7 +54,6 @@ class SqliteHandle:
         view = self.cs.execute(find_sql).fetchall()
         if view[0]["v1"] is None:
             return {"v1": 0, "v2": 0, "v3": 0, "v4": 1, "v5": 0, "v6": 0, "v7": 0, "v8": 0, "v9": 0}
-        print(view[0]["v1"])
         return view[0]
 
     def insert_view(self, view_data):
@@ -94,4 +93,6 @@ class SqliteHandle:
 
 if __name__ == '__main__':
     sh = SqliteHandle()
-    sh.find_view({"address": "https://pupper.cn/posts/b9926ccb.html"})
+    # sh.find_view({"address": "https://pupper.cn/posts/b9926ccb.html"})
+    a = sh.insert_view({"address": "https://pupper.cn/posts/b3426ccb.html", "ip": "127.0.0.12", "view": "view4"})
+    print(a)
