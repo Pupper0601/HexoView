@@ -1,11 +1,11 @@
 import uvicorn
-from handle_db import SqliteHandle
+from read_write_db import JsonHandle
 from pydantic import BaseModel
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-sq = SqliteHandle()
+sq = JsonHandle()
 
 
 class Item(BaseModel):
