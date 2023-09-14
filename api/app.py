@@ -1,7 +1,7 @@
 import uvicorn
-from fastapi import FastAPI
 from handle_db import SqliteHandle
 from pydantic import BaseModel
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -45,3 +45,12 @@ async def insert_view(item: Item):
     ip = item.ip
     view = item.view
     return sq.insert_view({"address": address, "ip": ip, "view": view})
+
+
+@app.options("/{anything:path}")
+async def options(anything: str):
+    return Response(headers={
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "*",
+    })
