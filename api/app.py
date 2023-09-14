@@ -20,8 +20,9 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
-    "http://127.0.0.1:5500"  # 添加你需要的源
-    "https://hexo-view.vercel.app"  # 这是你的后端服务的源
+    "http://127.0.0.1:5500",  # 添加你需要的源
+    "https://hexo-view.vercel.app",  # 这是你的后端服务的源
+    "https://hexo-view.pupper.cn"
 ]
 
 app.add_middleware(
