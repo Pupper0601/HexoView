@@ -1,11 +1,10 @@
 import uvicorn
-from read_write_db import JsonHandle
+from read_write_db import find_db, insert_db
 from pydantic import BaseModel
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-sq = JsonHandle()
 
 
 class Item(BaseModel):
@@ -36,7 +35,7 @@ app.add_middleware(
 
 @app.get("/read/")
 async def read_view(address: str):
-    return sq.find_view({"address": address})
+    return find_db({"address": address})
 
 
 @app.post("/insert/")
@@ -49,7 +48,7 @@ async def insert_view(item: Item, response: Response):
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "*"
 
-    return sq.insert_view({"address": address, "ip": ip, "view": view})
+    return insert_db({"address": address, "ip": ip, "view": view})
 
 
 @app.options("/{anything:path}")
