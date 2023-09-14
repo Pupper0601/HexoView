@@ -1,7 +1,9 @@
 import json
+import os
 
 
 def find_db(data):
+    os.system("sudo chmod 777 ./db.json")
     if type(data) != dict:
         data = json.loads(data)
 
