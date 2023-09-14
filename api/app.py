@@ -40,10 +40,15 @@ async def read_view(address: str):
 
 
 @app.post("/insert/")
-async def insert_view(item: Item):
+async def insert_view(item: Item, response: Response):
     address = item.address
     ip = item.ip
     view = item.view
+
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+
     return sq.insert_view({"address": address, "ip": ip, "view": view})
 
 
