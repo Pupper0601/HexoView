@@ -52,6 +52,9 @@ class SqliteHandle:
             sum(view6) as v6,sum(view7) as v7,sum(view8) as v8,sum(view9) as v9 from hexo_user 
             where id = (select id from hexo_article where address = '{view_data["address"]}');'''
         view = self.cs.execute(find_sql).fetchall()
+        if view[0]["v1"] is None:
+            return {"v1": 0, "v2": 0, "v3": 0, "v4": 1, "v5": 0, "v6": 0, "v7": 0, "v8": 0, "v9": 0}
+        print(view[0]["v1"])
         return view[0]
 
     def insert_view(self, view_data):
@@ -87,3 +90,8 @@ class SqliteHandle:
         self.cs.execute(insert_view_sql)
         self.conn.commit()
         return self.find_view({"address": view_data["address"]})
+
+
+if __name__ == '__main__':
+    sh = SqliteHandle()
+    sh.find_view({"address": "https://pupper.cn/posts/b9926ccb.html"})
