@@ -39,7 +39,7 @@ async def read_view(address: str):
     return sq.find_view({"address": address})
 
 
-@app.post("/insert/")
+@app.get("/insert/")
 async def insert_view(item: Item):
     address = item.address
     ip = item.ip
