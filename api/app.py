@@ -17,7 +17,7 @@ class Item(BaseModel):
 # 添加CORS中间件配置
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 允许所有来源的请求
+    allow_origins=["http://localhost:63342"],  # 允许所有来源的请求
     allow_methods=["*"],  # 允许所有 HTTP 方法
     allow_headers=["*"],  # 允许所有请求头
 )
@@ -35,12 +35,3 @@ async def insert_view(item: Item, response: Response):
     view = item.view
 
     return sq.insert_view({"address": address, "ip": ip, "view": view})
-
-
-@app.options("/{anything:path}")
-async def options(anything: str):
-    return Response(headers={
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "*",
-    })
