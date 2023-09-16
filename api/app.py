@@ -17,7 +17,7 @@ class Item(BaseModel):
 # 添加CORS中间件配置
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:63342"],  # 允许所有来源的请求
+    allow_origins=["*"],  # 允许所有来源的请求
     allow_methods=["*"],  # 允许所有 HTTP 方法
     allow_headers=["*"],  # 允许所有请求头
 )
