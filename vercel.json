@@ -1,23 +1,5 @@
-
 {
-  "name": "realwds-api",
-  "version": 2,
-  "routes": [
-    {
-      "src": "/read",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate",
-        "Access-Control-Allow-Origin": "*"
-      },
-      "dest": "/api/app"
-    },
-    {
-      "src": "/insert",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate",
-        "Access-Control-Allow-Origin": "*"
-      },
-      "dest": "/api/app"
-    }
-  ]
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/api/app" }
+    ]
 }
