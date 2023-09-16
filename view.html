@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .wl-reaction {
+                overflow: auto hidden;
+                margin-bottom: 1.75em;
+                text-align: center;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-title {
+                margin: 16px auto;
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            [data-waline] .wl-reaction-list {
+                margin-inline-start: 0;
+            }
+
+            [data-waline] ol,
+            [data-waline] ul {
+                margin-inline-start: 1.25em;
+                padding: 0;
+            }
+
+            .wl-reaction-list {
+                display: flex;
+                flex-direction: row;
+                gap: 16px;
+                justify-content: center;
+                margin: 0;
+                padding: 8px;
+                list-style-type: none;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-img {
+                position: relative;
+                width: 42px;
+                height: 42px;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-text {
+                font-size: .875em;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction img {
+                width: 100%;
+                height: 100%;
+                transition: all 250ms ease-in-out;
+            }
+
+            [data-waline] img {
+                max-width: 100%;
+                max-height: 400px;
+                border: none;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-votes {
+                position: absolute;
+                top: -9px;
+                inset-inline-end: -9px;
+                min-width: 1em;
+                padding: 2px;
+                border: 1px solid #8fbc8f;
+                border-radius: 1em;
+                background: #ffffff;
+                color: #8fbc8f;
+                font-weight: 700;
+                font-size: .75em;
+                line-height: 1;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+
+            .wl-reaction-item:hover img,
+            .wl-reaction-item.active img {
+                transform: scale(1.15);
+            }
+
+            .wl-reaction-votes {
+                position: absolute;
+                top: -9px;
+                inset-inline-end: -9px;
+                min-width: 1em;
+                padding: 2px;
+                border: 1px solid #8fbc8f;
+                border-radius: 1em;
+                background: #fff;
+                color: #8fbc8f;
+                font-weight: 700;
+                font-size: .75em;
+                line-height: 1;
+            }
+
+            [data-waline] * {
+                box-sizing: content-box;
+                line-height: 1.75;
+            }
+        </style>
+        <title>Hexo_view</title>
+    </head>
+
+<body>
+    <div class="wl-reaction">
+        <div class="wl-reaction-title">就现在，表明你的态度！</div>
+        <ul class="wl-reaction-list">
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/鼓掌.png"
+                        alt="鼓励">
+                    <div class="wl-reaction-votes">5</div>
+                </div>
+                <div class="wl-reaction-text">鼓励</div>
+            </li>
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/菜狗.png"
+                        alt="菜狗">
+                    <div class="wl-reaction-votes">2</div>
+                </div>
+                <div class="wl-reaction-text">菜狗</div>
+            </li>
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/正确.png"
+                        alt="正确">
+                    <div class="wl-reaction-votes">1</div>
+                </div>
+                <div class="wl-reaction-text">正确</div>
+            </li>
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/错误.png"
+                        alt="错误">
+                    <div class="wl-reaction-votes">2</div>
+                </div>
+                <div class="wl-reaction-text">错误</div>
+            </li>
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/思考.png"
+                        alt="思考">
+                    <div class="wl-reaction-votes">0</div>
+                </div>
+                <div class="wl-reaction-text">思考</div>
+            </li>
+            <li class="wl-reaction-item">
+                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/睡觉.png"
+                        alt="无聊">
+                    <div class="wl-reaction-votes">0</div>
+                </div>
+                <div class="wl-reaction-text">无聊</div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+
+<script>
+    // 更新投票数的函数
+    function updateVotes(data) {
+        const liElements = document.querySelectorAll('.wl-reaction-item');
+        liElements.forEach((li, index) => {
+            const voteElement = li.querySelector('.wl-reaction-votes');
+            if (voteElement) {
+                voteElement.textContent = data['view' + (index + 1)];
+            }
+        });
+    }
+
+    // 发送 POST 请求的函数
+    function sendPostRequest(address, ip, view) {
+        // 构建请求参数对象
+        const data = {
+            address: address,
+            ip: ip,
+            view: view
+        };
+
+        // 发起 POST 请求
+        fetch('https://hexo-view.pupper.cn/insert/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // 更新投票数
+                updateVotes(data);
+            })
+            .catch(error => {
+                // 处理请求错误
+                console.error('Error:', error);
+            });
+    }
+
+    // 发送 GET 请求的函数
+    function sendGetRequest(address) {
+        // 发起 GET 请求
+        fetch('https://hexo-view.pupper.cn/read/?address=' + encodeURIComponent(address))
+            .then(response => response.json())
+            .then(data => {
+                // 更新投票数
+                updateVotes(data);
+            })
+            .catch(error => {
+                // 处理请求错误
+                console.error('Error:', error);
+            });
+    }
+
+    // 获取当前页面地址
+    const address = window.location.href;
+
+    // 获取用户网络 IP 地址（示例，实际情况可能需要使用其他方法获取）
+    let ip = '';
+
+    function setIP() {
+        return fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                ip = data.ip;
+            })
+            .catch(error => {
+                console.error('获取 IP 地址失败:', error);
+                ip = '127.4.0.4';
+            });
+    }
+
+    setIP().then(() => {
+        console.log(ip); // 输出获取的 IP 地址或默认地址
+    });
+
+
+    // 获取所有的 li 元素
+    const liElements = document.querySelectorAll('.wl-reaction-item');
+
+    // 绑定点击事件处理程序
+    liElements.forEach((li, index) => {
+        li.addEventListener('click', () => {
+            const view = 'view' + (index + 1);
+            console.log(address, ip, view);
+            sendPostRequest(address, ip, view);
+
+        });
+    });
+
+    // 页面加载或刷新时自动发送 GET 请求
+    window.addEventListener('DOMContentLoaded', () => {
+        sendGetRequest(address);
+    });
+
+</script>
+
+</html>
