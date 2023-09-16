@@ -205,7 +205,7 @@
         liElements.forEach((li, index) => {
             const voteElement = li.querySelector('.wl-reaction-votes');
             if (voteElement) {
-                voteElement.textContent = data['v' + (index + 1)];
+                voteElement.textContent = data['view' + (index + 1)];
             }
         });
     }
@@ -282,7 +282,7 @@
     // 绑定点击事件处理程序
     liElements.forEach((li, index) => {
         li.addEventListener('click', () => {
-            const view = 'v' + (index + 1);
+            const view = 'view' + (index + 1);
             console.log(address, ip, view);
             sendPostRequest(address, ip, view);
 

@@ -52,11 +52,11 @@ class SqliteHandle:
 
 
     def result_view(self, article_id):
-        find_sql = f'''select CAST(sum(view1) AS SIGNED ) as v1,CAST(sum(view2) AS SIGNED ) as v2,
-                    CAST(sum(view3) AS SIGNED ) as v3,CAST(sum(view4) AS SIGNED ) as v4,
-                    CAST(sum(view5) AS SIGNED ) as v5,CAST(sum(view6) AS SIGNED ) as v6,
-                    CAST(sum(view7) AS SIGNED ) as v7,CAST(sum(view8) AS SIGNED ) as v8,
-                    CAST(sum(view9) AS SIGNED ) as v9 from hv_user
+        find_sql = f'''select CAST(sum(view1) AS SIGNED ) as view1,CAST(sum(view2) AS SIGNED ) as view2,
+                    CAST(sum(view3) AS SIGNED ) as view3,CAST(sum(view4) AS SIGNED ) as view4,
+                    CAST(sum(view5) AS SIGNED ) as view5,CAST(sum(view6) AS SIGNED ) as view6,
+                    CAST(sum(view7) AS SIGNED ) as view7,CAST(sum(view8) AS SIGNED ) as view8,
+                    CAST(sum(view9) AS SIGNED ) as view9 from hv_user
                     where id = {article_id};'''
         self.db.execute(find_sql)
         view_data = self.db.fetchall()
@@ -79,7 +79,7 @@ class SqliteHandle:
             insert_sql = f'''insert into hv_article(address) values ('{view_data["address"]}');'''
             self.db.execute(insert_sql)
             conn.commit()
-            return {"v1": 0, "v2": 0, "v3": 0, "v4": 0, "v5": 0, "v6": 0, "v7": 0, "v8": 0, "v9": 0}
+            return {"view1": 0, "view2": 0, "view3": 0, "view4": 0, "view5": 0, "view6": 0, "view7": 0, "view8": 0, "view9": 0}
 
         return self.result_view(article_data[0][0])
 
