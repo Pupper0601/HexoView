@@ -15,22 +15,21 @@ class Item(BaseModel):
 
 
 # 添加CORS中间件配置
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:63342",
-    "http://127.0.0.1:5500",  # 添加你需要的源
-    "https://hexo-view.vercel.app",  # 这是你的后端服务的源
-    "https://hexo-view.pupper.cn",
-]
+# origins = [
+#     "http://localhost.tiangolo.com",
+#     "https://localhost.tiangolo.com",
+#     "http://localhost",
+#     "http://localhost:63342",
+#     "http://127.0.0.1:5500",  # 添加你需要的源
+#     "https://hexo-view.vercel.app",  # 这是你的后端服务的源
+#     "https://hexo-view.pupper.cn",
+# ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],  # 允许所有来源的请求
+    allow_methods=["*"],  # 允许所有 HTTP 方法
+    allow_headers=["*"],  # 允许所有请求头
 )
 
 
