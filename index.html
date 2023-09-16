@@ -216,7 +216,7 @@
         const data = {
             address: address,
             ip: ip,
-            view: index
+            view: view
         };
 
         // 发起 POST 请求
@@ -283,8 +283,8 @@
     liElements.forEach((li, index) => {
         li.addEventListener('click', () => {
             const view = 'view' + (index + 1);
-            console.log(address, ip, index);
-            sendPostRequest(address, ip, index);
+            console.log(address, ip, view);
+            sendPostRequest(address, ip, view);
 
         });
     });
