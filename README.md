@@ -3,7 +3,7 @@
 
 # 效果展示
 
-![](https://img.pupper.cn/img/1695016252.gif)
+![](./images/1695016252.gif)
 
 # 一、前端配置
 
@@ -293,18 +293,18 @@ window.addEventListener('DOMContentLoaded', () => {
 # 二、后端配置
 
 ## 2.1 [fork GitHub](https://github.com/Pupper0601/HexoView) 项目
-![](https://img.pupper.cn/img/1695015106.png)
+![](./images/1695015106.png)
 
 在 [vercel](https://vercel.com/dashboard) 中创建项目
-![](https://img.pupper.cn/img/1695015032.png)
+![](./images/1695015032.png)
 
 ## 2.2 配置环境变量
 
 在项目的 `setting --> Environment Variables` 中创建 `VIEW_SQL_DB, VIEW_SQL_PASSWORD, VIEW_SQL_HOST, VIEW_SQL_USER` 四个连接数据库的变量
 
-![](https://img.pupper.cn/img/1695015202.png)
+![](./images/1695015202.png)
 
-![](https://img.pupper.cn/img/1695015375.png)
+![](./images/1695015375.png)
 
 
 # 三、over ~
