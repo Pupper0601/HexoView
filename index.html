@@ -1,200 +1,165 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <style>
-            .wl-reaction {
-                overflow: auto hidden;
-                margin-bottom: 1.75em;
-                text-align: center;
-            }
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .wl-reaction {
+            overflow: auto hidden;
+            margin-bottom: 1.75em;
+            text-align: center;
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        [data-waline] * {
+            box-sizing: content-box;
+            line-height: 1.75;
+        }
 
-            .wl-reaction-title {
-                margin: 16px auto;
-                font-weight: bold;
-                font-size: 18px;
-            }
+        .wl-reaction-title {
+            margin: 25px auto;
+            font-weight: bold;
+            font-size: 25px;
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        [data-waline] .wl-reaction-list {
+            margin-inline-start: 0;
+        }
 
-            [data-waline] .wl-reaction-list {
-                margin-inline-start: 0;
-            }
+        [data-waline] ol,
+        [data-waline] ul {
+            margin-inline-start: 1.25em;
+            padding: 0;
+        }
 
-            [data-waline] ol,
-            [data-waline] ul {
-                margin-inline-start: 1.25em;
-                padding: 0;
-            }
+        .wl-reaction-list {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            justify-content: center;
+            margin: 0;
+            padding: 8px;
+            list-style-type: none;
+        }
 
-            .wl-reaction-list {
-                display: flex;
-                flex-direction: row;
-                gap: 16px;
-                justify-content: center;
-                margin: 0;
-                padding: 8px;
-                list-style-type: none;
-            }
+        .wl-reaction-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        .wl-reaction-img {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
 
-            .wl-reaction-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                cursor: pointer;
-            }
+        .wl-reaction-text {
+            font-size: .875em;
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        .wl-reaction img {
+            width: 100%;
+            height: 100%;
+            transition: all 250ms ease-in-out;
+        }
 
-            .wl-reaction-img {
-                position: relative;
-                width: 42px;
-                height: 42px;
-            }
+        [data-waline] img {
+            max-width: 100%;
+            max-height: 400px;
+            border: none;
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        .wl-reaction-votes {
+            position: absolute;
+            top: -9px;
+            inset-inline-end: -9px;
+            min-width: 1.5em;
+            padding: 2px;
+            border: 1px solid #5d5e4bdd;
+            border-radius: 1em;
+            background: #5d5e4bdd;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: .75em;
+            line-height: 1;
+        }
 
-            .wl-reaction-text {
-                font-size: .875em;
-            }
+        .wl-reaction-item:hover img,
+        .wl-reaction-item.active img {
+            transform: scale(1.5);
+        }
 
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
+        .view_loading {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #555;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            animation: spin 2s linear infinite;
+        }
 
-            .wl-reaction img {
-                width: 100%;
-                height: 100%;
-                transition: all 250ms ease-in-out;
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
             }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
-            [data-waline] img {
-                max-width: 100%;
-                max-height: 400px;
-                border: none;
-            }
-
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
-
-            .wl-reaction-votes {
-                position: absolute;
-                top: -9px;
-                inset-inline-end: -9px;
-                min-width: 1em;
-                padding: 2px;
-                border: 1px solid #8fbc8f;
-                border-radius: 1em;
-                background: #ffffff;
-                color: #8fbc8f;
-                font-weight: 700;
-                font-size: .75em;
-                line-height: 1;
-            }
-
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
-
-            .wl-reaction-item:hover img,
-            .wl-reaction-item.active img {
-                transform: scale(1.15);
-            }
-
-            .wl-reaction-votes {
-                position: absolute;
-                top: -9px;
-                inset-inline-end: -9px;
-                min-width: 1em;
-                padding: 2px;
-                border: 1px solid #8fbc8f;
-                border-radius: 1em;
-                background: #fff;
-                color: #8fbc8f;
-                font-weight: 700;
-                font-size: .75em;
-                line-height: 1;
-            }
-
-            [data-waline] * {
-                box-sizing: content-box;
-                line-height: 1.75;
-            }
-        </style>
-        <title>Hexo_view</title>
-    </head>
+    </style>
+    <title>Hexo_view</title>
+</head>
 
 <body>
-    <div class="wl-reaction">
-        <div class="wl-reaction-title">就现在，表明你的态度！</div>
-        <ul class="wl-reaction-list">
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/鼓掌.png"
-                        alt="鼓励">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">鼓励</div>
-            </li>
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/菜狗.png"
-                        alt="菜狗">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">菜狗</div>
-            </li>
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/正确.png"
-                        alt="正确">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">正确</div>
-            </li>
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/错误.png"
-                        alt="错误">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">错误</div>
-            </li>
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/思考.png"
-                        alt="思考">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">思考</div>
-            </li>
-            <li class="wl-reaction-item">
-                <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/睡觉.png"
-                        alt="无聊">
-                    <div class="wl-reaction-votes">0</div>
-                </div>
-                <div class="wl-reaction-text">无聊</div>
-            </li>
-        </ul>
-    </div>
+<div class="wl-reaction">
+    <div class="wl-reaction-title">就现在，表明你的态度！</div>
+    <ul class="wl-reaction-list">
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/鼓掌.png"
+                                              alt="鼓励">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">鼓励</div>
+        </li>
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/菜狗.png"
+                                              alt="菜狗">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">菜狗</div>
+        </li>
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/正确.png"
+                                              alt="正确">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">正确</div>
+        </li>
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/错误.png"
+                                              alt="错误">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">错误</div>
+        </li>
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/思考.png"
+                                              alt="思考">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">思考</div>
+        </li>
+        <li class="wl-reaction-item">
+            <div class="wl-reaction-img"><img src="https://jsd.cdn.zzko.cn/npm/sticker-heo/Sticker-100/睡觉.png"
+                                              alt="无聊">
+                <div class="wl-reaction-votes">0</div>
+            </div>
+            <div class="wl-reaction-text">无聊</div>
+        </li>
+    </ul>
+</div>
 </body>
 
 
@@ -219,6 +184,11 @@
             view: view
         };
 
+        // 添加 view_loading 类名
+        const clickedLi = document.querySelector('.wl-reaction-item.clicked');
+        const voteElement = clickedLi.querySelector('.wl-reaction-votes');
+        voteElement.classList.add('view_loading');
+
         // 发起 POST 请求
         fetch('https://hexo-view.pupper.cn/insert/', {
             method: 'POST',
@@ -231,10 +201,14 @@
             .then(data => {
                 // 更新投票数
                 updateVotes(data);
+                // 移除 view_loading 类名
+                voteElement.classList.remove('view_loading');
             })
             .catch(error => {
                 // 处理请求错误
                 console.error('Error:', error);
+                // 移除 view_loading 类名
+                voteElement.classList.remove('view_loading');
             });
     }
 
@@ -275,7 +249,6 @@
         console.log(ip); // 输出获取的 IP 地址或默认地址
     });
 
-
     // 获取所有的 li 元素
     const liElements = document.querySelectorAll('.wl-reaction-item');
 
@@ -284,8 +257,14 @@
         li.addEventListener('click', () => {
             const view = 'view' + (index + 1);
             console.log(address, ip, view);
+            // 移除之前点击的 li 元素的 clicked 类名
+            const clickedLi = document.querySelector('.wl-reaction-item.clicked');
+            if (clickedLi) {
+                clickedLi.classList.remove('clicked');
+            }
+            // 添加 clicked 类名到当前点击的 li 元素
+            li.classList.add('clicked');
             sendPostRequest(address, ip, view);
-
         });
     });
 
@@ -293,6 +272,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         sendGetRequest(address);
     });
+
 
 </script>
 
