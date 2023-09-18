@@ -55,7 +55,7 @@ class SqliteHandle:
                 else:
                     return article_data
 
-    def result_view(self, article_id):
+    def result_view(self, article_id, ip):
         find_sql = f'''select CAST(sum(view1) AS SIGNED ) as view1,CAST(sum(view2) AS SIGNED ) as view2,
                     CAST(sum(view3) AS SIGNED ) as view3,CAST(sum(view4) AS SIGNED ) as view4,
                     CAST(sum(view5) AS SIGNED ) as view5,CAST(sum(view6) AS SIGNED ) as view6,
@@ -66,11 +66,19 @@ class SqliteHandle:
         view_data = self.db.fetchall()
         desc = self.db.description
         result_dict = {}
-        for i in range(len(view_data[0])):
-            if view_data[0][i] is None:
+        if view_data[0][0] is None:
+            for i in range(len(view_data[0])):
                 result_dict[desc[i][0]] = 0
-            else:
+        else:
+            for i in range(len(view_data[0])):
                 result_dict[desc[i][0]] = view_data[0][i]
+            find_view_sql = f'''select * from hv_user where id = {article_id} and ip = '{ip}';'''
+            self.db.execute(find_view_sql)
+            user_view = self.db.fetchall()
+            if user_view != ():
+                for i in range(2, len(user_view[0])):
+                    if user_view[0][i] == 1:
+                        result_dict["my_view"] = i-1
         return result_dict
 
     def find_view(self, view_data):
@@ -78,7 +86,6 @@ class SqliteHandle:
             view_data = json.loads(view_data)
 
         article_data = self.find_article(view_data["address"])
-
         if article_data == ():
             insert_sql = f'''insert into hv_article(address) values ('{view_data["address"]}');'''
             self.db.execute(insert_sql)
@@ -86,7 +93,7 @@ class SqliteHandle:
             return {"view1": 0, "view2": 0, "view3": 0, "view4": 0, "view5": 0, "view6": 0, "view7": 0, "view8": 0,
                     "view9": 0}
 
-        return self.result_view(article_data[0][0])
+        return self.result_view(article_data[0][0], view_data["ip"])
 
     def insert_view(self, view_data):
         """
@@ -114,11 +121,11 @@ class SqliteHandle:
         self.db.execute(insert_view_sql)
         conn.commit()
 
-        return self.result_view(article_id)
+        return self.result_view(article_id, view_data["ip"])
 
 
 if __name__ == '__main__':
     sh = SqliteHandle()
-    a = sh.find_view({"address": "https://pupper.cn/posts/b9926ccb.html"})
-    # a = sh.insert_view({"address": "https://pupper.cn/posts/b99aaa.html", "ip": "127.0.0.12", "view": "view4"})
+    # a = sh.find_view({"address": "https://pupper.cn/posts/b99aaa.html", "ip": "127.0.0.12"})
+    a = sh.insert_view({"address": "https://pupper.cn/posts/b99aaa.html", "ip": "127.0.0.32", "view": "view5"})
     print(a)
