@@ -2,15 +2,20 @@
 # @Author : Pupper
 # @Email  : pupper.cheng@gmail.com
 import json
+import os
+
 import pymysql
 import configparser
 
+from dotenv import load_dotenv
+
+load_dotenv(verbose=True)
+
 conf = configparser.ConfigParser()
-conf.read("config.ini", encoding="utf8")
-conn = pymysql.connect(host=conf["mysql"]["HOST"],  # host属性
-                       user=conf["mysql"]["USER"],  # 用户名
-                       password=conf["mysql"]["PASSWORD"],  # 此处填登录数据库的密码
-                       db=conf["mysql"]["DB"],  # 数据库名
+conn = pymysql.connect(host=os.getenv("VIEW_SQL_HOST"),  # host属性
+                       user=os.getenv("VIEW_SQL_USER"),  # 用户名
+                       password=os.getenv("VIEW_SQL_PASSWORD"),  # 此处填登录数据库的密码
+                       db=os.getenv("VIEW_SQL_DB"),  # 数据库名
                        charset="utf8")
 
 
@@ -50,7 +55,6 @@ class SqliteHandle:
                 else:
                     return article_data
 
-
     def result_view(self, article_id):
         find_sql = f'''select CAST(sum(view1) AS SIGNED ) as view1,CAST(sum(view2) AS SIGNED ) as view2,
                     CAST(sum(view3) AS SIGNED ) as view3,CAST(sum(view4) AS SIGNED ) as view4,
@@ -79,7 +83,8 @@ class SqliteHandle:
             insert_sql = f'''insert into hv_article(address) values ('{view_data["address"]}');'''
             self.db.execute(insert_sql)
             conn.commit()
-            return {"view1": 0, "view2": 0, "view3": 0, "view4": 0, "view5": 0, "view6": 0, "view7": 0, "view8": 0, "view9": 0}
+            return {"view1": 0, "view2": 0, "view3": 0, "view4": 0, "view5": 0, "view6": 0, "view7": 0, "view8": 0,
+                    "view9": 0}
 
         return self.result_view(article_data[0][0])
 
