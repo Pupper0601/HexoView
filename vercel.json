@@ -1,5 +1,13 @@
 {
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/api/app" }
-    ]
+  "build": {
+    "env": {
+      "HOST": "@HOST",
+      "DB": "@DB",
+      "PASSWORD": "@PASSWORD",
+      "USER": "@USER"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/app" }
+  ]
 }
