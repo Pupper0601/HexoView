@@ -24,8 +24,8 @@ app.add_middleware(
 
 
 @app.get("/read/")
-async def read_view(address: str):
-    return sq.find_view({"address": address})
+async def read_view(address: str, ip: str):
+    return sq.find_view({"address": address, "ip": ip})
 
 
 @app.post("/insert/")
