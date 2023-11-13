@@ -1,6 +1,6 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/read/?address=http://127.0.0.1:5500/html/demo1.html
+GET http://127.0.0.1:8000/read/?address=http://127.0.0.1:5500/html/demo1.html&ip=127.0.0.2
 Accept: application/json
 
 ###

@@ -2,6 +2,7 @@
 # @Author : Pupper
 # @Email  : pupper.cheng@gmail.com
 import json
+import os
 import sqlite3
 from loguru import logger
 
@@ -11,7 +12,7 @@ def join_sqlite():
     连接数据库
     :return: 数据库对象、游标
     """
-    conn = sqlite3.connect('./db.sqlite3')  # 连接数据库,如果不存在则自动创建
+    conn = sqlite3.connect('db.sqlite3')  # 连接数据库,如果不存在则自动创建
     cur = conn.cursor()  # 获取游标
     logger.info(f"数据库连接成功: {conn}")
     # 创建数据库
@@ -54,7 +55,7 @@ class SqliteHandle:
         查询文章
         :param site: 文章地址
         :param article_id: 文章 id
-        :return:
+        :return: 返回文章数据
         """
         find_sql = f'''select * from hv_article where address = '{site}';'''
         self.cur.execute(find_sql)
@@ -82,7 +83,7 @@ class SqliteHandle:
 
         :param article_id: 文章 id
         :param ip:ip 地址
-        :return:
+        :return: 返回试图结果
         """
         find_sql = f'''select CAST(sum(view1) AS SIGNED ) as view1,CAST(sum(view2) AS SIGNED ) as view2,
                     CAST(sum(view3) AS SIGNED ) as view3,CAST(sum(view4) AS SIGNED ) as view4,
@@ -110,17 +111,25 @@ class SqliteHandle:
         return result_dict
 
     def find_view(self, view_data):
+        """
+        查询点赞数据
+        :param view_data:
+        :return:
+        """
+        print(view_data)
         if type(view_data) != dict:
             view_data = json.loads(view_data)
+            print(view_data)
 
         article_data = self.find_article(view_data["address"])
+        print(article_data)
         if article_data == ():
             insert_sql = f'''insert into hv_article(address) values ('{view_data["address"]}');'''
             self.cur.execute(insert_sql)
             self.conn.commit()
             return {"view1": 0, "view2": 0, "view3": 0, "view4": 0, "view5": 0, "view6": 0, "view7": 0, "view8": 0,
                     "view9": 0}
-
+        print(self.result_view(article_data[0][0], view_data["ip"]))
         return self.result_view(article_data[0][0], view_data["ip"])
 
     def insert_view(self, view_data):
@@ -154,6 +163,6 @@ class SqliteHandle:
 
 if __name__ == '__main__':
     sh = SqliteHandle()
-    # a = sh.find_view({"address": "https://pupper.cn/posts/b99aaa.html", "ip": "127.0.0.12"})
-    a = sh.insert_view({"address": "https://pupper.cn/posts/b99bbb.html", "ip": "127.0.0.33", "view": "view3"})
+    a = sh.find_view({"address": "https://pupper.cn/posts/b99aaa.html", "ip": "127.0.0.12"})
+    # a = sh.insert_view({"address": "https://pupper.cn/posts/b99bbb.html", "ip": "127.0.0.33", "view": "view3"})
     print(a)

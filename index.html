@@ -171,6 +171,136 @@
 
 
 <script>
+// 更新投票数的函数
+function updateVotes(data) {
+    const liElements = document.querySelectorAll('.wl-reaction-item');
+    liElements.forEach((li, index) => {
+        const voteElement = li.querySelector('.wl-reaction-votes');
+        if (voteElement) {
+            // 先移除所有元素的 my-view 类名
+            voteElement.classList.remove('my-view');
+            const viewKey = 'view' + (index + 1);
+            if (data.hasOwnProperty(viewKey)) {
+                voteElement.textContent = data[viewKey];
+            }
+            if (data.hasOwnProperty('my_view') && Number(data.my_view) === (index + 1)) {
+                voteElement.classList.add('my-view');
+            }
+        }
+    });
+}
+
+// 发送 POST 请求的函数
+function sendPostRequest(address, ip, view) {
+    // 构建请求参数对象
+    const data = {
+        address: address,
+        ip: ip,
+        view: view
+    };
+
+    // 添加 view_loading 类名
+    const clickedLi = document.querySelector('.wl-reaction-item.clicked');
+    const voteElement = clickedLi.querySelector('.wl-reaction-votes');
+    voteElement.classList.add('view_loading');
+
+    // 发起 POST 请求
+    fetch('https://hexo-view.pupper.cn/insert/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            // 更新投票数
+            updateVotes(data);
+            // 移除 view_loading 类名
+            voteElement.classList.remove('view_loading');
+        })
+        .catch(error => {
+            // 处理请求错误
+            console.error('Error:', error);
+            // 移除 view_loading 类名
+            voteElement.classList.remove('view_loading');
+        });
+}
+
+function sendGetRequest(address, ip) {
+    // 获取所有 wl-reaction-votes 元素
+    var voteElements = document.querySelectorAll('.wl-reaction-votes');
+
+    // 对每个元素添加 view_loading 类名
+    voteElements.forEach(element => {
+        element.classList.add('view_loading');
+    });
+
+    // 发起 GET 请求
+    fetch('https://hexo-view.pupper.cn/read/?address=' + encodeURIComponent(address) + '&ip=' + encodeURIComponent(ip))
+        .then(response => response.json())
+        .then(data => {
+            // 更新投票数
+            updateVotes(data);
+        })
+        .catch(error => {
+            // 处理请求错误
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // 不论成功或失败，请求结束后对每个元素移除 view_loading 类名
+            voteElements.forEach(element => {
+                element.classList.remove('view_loading');
+            });
+        });
+}
+
+
+// 获取当前页面地址
+const address = window.location.href;
+
+// 获取用户网络 IP 地址（示例，实际情况可能需要使用其他方法获取）
+let ip = '';
+
+function setIP() {
+    return fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            ip = data.ip;
+        })
+        .catch(error => {
+            console.error('获取 IP 地址失败:', error);
+            ip = '127.4.0.4';
+        });
+}
+
+setIP().then(() => {
+    console.log(ip); // 输出获取的 IP 地址或默认地址
+});
+
+// 获取所有的 li 元素
+const liElements = document.querySelectorAll('.wl-reaction-item');
+
+// 绑定点击事件处理程序
+liElements.forEach((li, index) => {
+    li.addEventListener('click', () => {
+        const view = 'view' + (index + 1);
+        console.log(address, ip, view);
+        // 移除之前点击的 li 元素的 clicked 类名
+        const clickedLi = document.querySelector('.wl-reaction-item.clicked');
+        if (clickedLi) {
+            clickedLi.classList.remove('clicked');
+        }
+        // 添加 clicked 类名到当前点击的 li 元素
+        li.classList.add('clicked');
+        sendPostRequest(address, ip, view);
+    });
+});
+
+// 页面加载或刷新时自动发送 GET 请求
+window.addEventListener('DOMContentLoaded', () => {
+    sendGetRequest(address, ip);
+});
 
 </script>
 

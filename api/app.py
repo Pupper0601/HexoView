@@ -25,3 +25,7 @@ async def insert_view(item: Item, response: Response):
     view = item.view
 
     return sq.insert_view({"address": address, "ip": ip, "view": view})
+
+
+if __name__ == '__main__':
+    uvicorn.run("app:app", port=9022, log_level="info")
